@@ -17,30 +17,15 @@ Timeline:
 	2014: Expansion and 2nd Project
 
 ================================File System===============================
+css
+js
+fonts
+images
 
-_lib: library files, wont be changed
-	
-	bootstrap: bootstrap related files (obsolete later)
-	
-	bootstrap-others: other bootstrap files
-	
-	font-awersomeL icons
-	
-	jasny: for date-picker and file upload
-
-
-_publc:
-	
-	css: 
-	
-	font:
-	
-	images:
 
 assets: temp files, auto-generated
 
-protected
-	
+protected	
 	components
 	
 	config
