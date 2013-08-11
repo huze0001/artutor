@@ -17,10 +17,7 @@ Timeline:
 	2014: Expansion and 2nd Project
 
 ================================File System===============================
-css
-js
-fonts
-images
+static resource folder: css/js/fonts/images
 
 
 assets: temp files, auto-generated
