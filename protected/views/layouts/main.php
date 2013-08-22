@@ -11,7 +11,7 @@
 
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css"> -->
     <!-- Latest jQuery (IE8 supported) -->
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
