@@ -28,11 +28,11 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','create','createTutor'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -75,6 +75,31 @@ class UserController extends Controller
 		}
 
 		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+
+
+
+	/**
+	 * Creates a new model-tutor.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreateTutor()
+	{
+		$model=new User;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['User']))
+		{
+			$model->attributes=$_POST['User'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('createTutor',array(
 			'model'=>$model,
 		));
 	}

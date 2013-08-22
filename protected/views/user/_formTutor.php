@@ -40,7 +40,7 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-<!-- 	<div class="row">
+	<div class="row">
 		<?php echo $form->labelEx($model,'mobile'); ?>
 		<?php echo $form->textField($model,'mobile',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'mobile'); ?>
@@ -50,14 +50,14 @@
 		<?php echo $form->labelEx($model,'type'); ?>
 		<?php echo $form->dropDownList($model,'type',$model->getTypeOptions()); ?>
 		<?php echo $form->error($model,'type'); ?>
-	</div> -->
+	</div>
 
-<!-- 
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'gender'); ?>
 		<?php echo $form->dropDownList($model,'gender', $model->getGenderOptions()); ?>
 		<?php echo $form->error($model,'gender'); ?>
-	</div> -->
+	</div>
 
 
 <!-- 	<div class="row">
@@ -78,7 +78,7 @@
 		<?php echo $form->error($model,'auth_type'); ?>
 	</div> -->
 
-<!-- 	<div class="row">
+	<div class="row">
 		<?php echo $form->labelEx($model,'photo'); ?>
 		<?php echo $form->textField($model,'photo',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'photo'); ?>
@@ -88,7 +88,7 @@
 		<?php echo $form->labelEx($model,'introduction'); ?>
 		<?php echo $form->textField($model,'introduction',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'introduction'); ?>
-	</div> -->
+	</div>
 
 <!-- 	<div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>
