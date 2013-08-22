@@ -47,8 +47,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'time_last_login'); ?>
-		<?php echo $form->textField($model,'time_last_login'); ?>
+		<?php echo $form->label($model,'last_login_time'); ?>
+		<?php echo $form->textField($model,'last_login_time'); ?>
 	</div>
 
 	<div class="row">
@@ -79,11 +79,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'remark'); ?>
 		<?php echo $form->textField($model,'remark',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'last_login_time'); ?>
-		<?php echo $form->textField($model,'last_login_time'); ?>
 	</div>
 
 	<div class="row buttons">

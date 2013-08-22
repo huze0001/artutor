@@ -54,14 +54,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		/*
 		'gender',
 		'time_create',
-		'time_last_login',
+		'last_login_time',
 		'rating',
 		'payment_ref',
 		'auth_type',
 		'photo',
 		'introduction',
 		'remark',
-		'last_login_time',
 		*/
 		array(
 			'class'=>'CButtonColumn',

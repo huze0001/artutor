@@ -38,8 +38,8 @@
 	<?php echo CHtml::encode($data->time_create); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('time_last_login')); ?>:</b>
-	<?php echo CHtml::encode($data->time_last_login); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('last_login_time')); ?>:</b>
+	<?php echo CHtml::encode($data->last_login_time); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('rating')); ?>:</b>
@@ -64,10 +64,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('remark')); ?>:</b>
 	<?php echo CHtml::encode($data->remark); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('last_login_time')); ?>:</b>
-	<?php echo CHtml::encode($data->last_login_time); ?>
 	<br />
 
 	*/ ?>

@@ -28,9 +28,9 @@
 	</div>
 
 	<div class="row">
-       <?php echo $form->labelEx($model,'password_repeat'); ?>
-       <?php echo $form->passwordField($model,'password_repeat',array('size'=>60,'maxlength'=>255)); ?>
-       <?php echo $form->error($model,'password_repeat'); ?>
+	       <?php echo $form->labelEx($model,'password_repeat'); ?>
+	       <?php echo $form->passwordField($model,'password_repeat',array('size'=>60,'maxlength'=>255)); ?>
+	       <?php echo $form->error($model,'password_repeat'); ?>
 	</div>
 
 
@@ -48,33 +48,23 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->dropDownList($model,'type',$model->getTypeOptions()); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'gender'); ?>
-		<?php echo $form->textField($model,'gender',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->dropDownList($model,'gender', $model->getGenderOptions()); ?>
 		<?php echo $form->error($model,'gender'); ?>
 	</div>
 
+
 <!-- 	<div class="row">
-		<?php echo $form->labelEx($model,'time_create'); ?>
-		<?php echo $form->textField($model,'time_create'); ?>
-		<?php echo $form->error($model,'time_create'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'time_last_login'); ?>
-		<?php echo $form->textField($model,'time_last_login'); ?>
-		<?php echo $form->error($model,'time_last_login'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'rating'); ?>
 		<?php echo $form->textField($model,'rating'); ?>
 		<?php echo $form->error($model,'rating'); ?>
-	</div> -->
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'payment_ref'); ?>
@@ -86,7 +76,7 @@
 		<?php echo $form->labelEx($model,'auth_type'); ?>
 		<?php echo $form->textField($model,'auth_type',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'auth_type'); ?>
-	</div>
+	</div> -->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'photo'); ?>
@@ -100,16 +90,10 @@
 		<?php echo $form->error($model,'introduction'); ?>
 	</div>
 
-	<div class="row">
+<!-- 	<div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>
 		<?php echo $form->textField($model,'remark',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'remark'); ?>
-	</div>
-
-<!-- 	<div class="row">
-		<?php echo $form->labelEx($model,'last_login_time'); ?>
-		<?php echo $form->textField($model,'last_login_time'); ?>
-		<?php echo $form->error($model,'last_login_time'); ?>
 	</div> -->
 
 	<div class="row buttons">

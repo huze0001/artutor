@@ -12,14 +12,13 @@
  * @property string $type
  * @property string $gender
  * @property string $time_create
- * @property string $time_last_login
+ * @property string $last_login_time
  * @property integer $rating
  * @property string $payment_ref
  * @property string $auth_type
  * @property string $photo
  * @property string $introduction
  * @property string $remark
- * @property string $last_login_time
  *
  * The followings are the available model relations:
  * @property ArtPayment[] $artPayments
@@ -33,6 +32,16 @@ class User extends CActiveRecord
 	public $password_repeat;
 
 	 /**
+      * apply a hash on the password before we store it in the database
+      */
+     protected function afterValidate()
+     {
+     	parent::afterValidate();
+     	if(!$this->hasErrors())
+     		$this->password = $this->hashPassword($this->password);
+     }
+     
+	 /**
       * Generates the password hash.
       * @param string password
       * @return string hash
@@ -41,6 +50,41 @@ class User extends CActiveRecord
     { 	
     	return md5($password);
 	}
+
+
+	const GENDER_MALE=0;
+	const GENDER_FEMALE=1;
+
+	 /**
+     * Retrieves a list of issue types
+     * @return array an array of available issue types.
+     */
+	 public function getGenderOptions()
+	 {
+	 	return array(
+	 		self::GENDER_MALE=>'Male',
+	 		self::GENDER_FEMALE=>'Female',
+	 		); 
+	 }
+
+
+	const TYPE_USER=0;
+	const TYPE_TUTOR=1;
+
+	 /**
+     * Retrieves a list of issue types
+     * @return array an array of available issue types.
+     */
+	 public function getTypeOptions()
+	 {
+	 	return array(
+	 		self::TYPE_USER=>'User',
+	 		self::TYPE_TUTOR=>'Tutor',
+	 		); 
+	 }
+
+
+
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -68,30 +112,21 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, password, password_repeat, name', 'required'),
+			array('email, password, name, password_repeat', 'required'),
+			array('rating', 'numerical', 'integerOnly'=>true),
 			array('password', 'compare'),
 			array('password_repeat', 'safe'),
 			array('email', 'email'),
-			array('rating', 'numerical', 'integerOnly'=>true),
 			array('email, password, name, mobile, type, gender, payment_ref, auth_type, photo, introduction, remark', 'length', 'max'=>255),
-			array('time_last_login, last_login_time', 'safe'),
+			array('last_login_time', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, email, password, name, mobile, type, gender, time_create, time_last_login, rating, payment_ref, auth_type, photo, introduction, remark, last_login_time', 'safe', 'on'=>'search'),
+			array('id, email, password, name, mobile, type, gender, time_create, last_login_time, rating, payment_ref, auth_type, photo, introduction, remark', 'safe', 'on'=>'search'),
+		
 		);
 	}
 
 	/**
-      * apply a hash on the password before we store it in the database
-      */
-     protected function afterValidate()
-     {
-	    parent::afterValidate();
-	    if(!$this->hasErrors())
-	        $this->password = $this->hashPassword($this->password);
-     }
-
-     /**
       * Checks if the given password is correct.
       * @param string the password to be validated
       * @return boolean whether the password is valid
@@ -131,14 +166,13 @@ class User extends CActiveRecord
 			'type' => 'Type',
 			'gender' => 'Gender',
 			'time_create' => 'Time Create',
-			'time_last_login' => 'Time Last Login',
+			'last_login_time' => 'Last Login Time',
 			'rating' => 'Rating',
 			'payment_ref' => 'Payment Ref',
 			'auth_type' => 'Auth Type',
 			'photo' => 'Photo',
 			'introduction' => 'Introduction',
 			'remark' => 'Remark',
-			'last_login_time' => 'Last Login Time',
 		);
 	}
 
@@ -161,14 +195,13 @@ class User extends CActiveRecord
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('gender',$this->gender,true);
 		$criteria->compare('time_create',$this->time_create,true);
-		$criteria->compare('time_last_login',$this->time_last_login,true);
+		$criteria->compare('last_login_time',$this->last_login_time,true);
 		$criteria->compare('rating',$this->rating);
 		$criteria->compare('payment_ref',$this->payment_ref,true);
 		$criteria->compare('auth_type',$this->auth_type,true);
 		$criteria->compare('photo',$this->photo,true);
 		$criteria->compare('introduction',$this->introduction,true);
 		$criteria->compare('remark',$this->remark,true);
-		$criteria->compare('last_login_time',$this->last_login_time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
