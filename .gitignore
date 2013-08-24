@@ -3,3 +3,4 @@ protected/runtime/
 themes/classic/views/
 .idea/
 .DS_Store
+.project
