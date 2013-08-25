@@ -31,6 +31,8 @@ class User extends CActiveRecord
 
 	public $password_repeat;
 
+
+
 	 /**
       * apply a hash on the password before we store it in the database
       */
@@ -67,21 +69,42 @@ class User extends CActiveRecord
 	 		); 
 	 }
 
-
-	const TYPE_USER=0;
-	const TYPE_TUTOR=1;
-
 	 /**
-     * Retrieves a list of issue types
-     * @return array an array of available issue types.
-     */
-	 public function getTypeOptions()
+      * @return string the status text display for the current issue
+      */
+	 public function getGenderText()
 	 {
-	 	return array(
-	 		self::TYPE_USER=>'User',
-	 		self::TYPE_TUTOR=>'Tutor',
-	 		); 
+	 	$genderOptions=$this->genderOptions;
+	 	return isset($genderOptions[$this->gender]) ?
+	 	$genderOptions[$this->gender] : "unknown status ({$this->gender})";
 	 }
+
+
+
+	// const TYPE_USER=0;
+	// const TYPE_TUTOR=1;
+
+	//  /**
+ //     * Retrieves a list of issue types
+ //     * @return array an array of available issue types.
+ //     */
+	//  public function getTypeOptions()
+	//  {
+	//  	return array(
+	//  		self::TYPE_USER=>'User',
+	//  		self::TYPE_TUTOR=>'Tutor',
+	//  		); 
+	//  }
+
+	//  /**
+ //      * @return string the status text display for the current issue
+ //      */
+	//  public function getTypeText()
+	//  {
+	//  	$typeOptions=$this->typeOptions;
+	//  	return isset($typeOptions[$this->gender]) ?
+	//  	$typeOptions[$this->gender] : "unknown status ({$this->type})";
+	//  }
 
 
 

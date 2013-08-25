@@ -26,11 +26,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
-	<?php echo CHtml::encode($data->type); ?>
+	<?php echo CHtml::encode($data->type; ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('gender')); ?>:</b>
-	<?php echo CHtml::encode($data->gender); ?>
+	<?php echo CHtml::encode($data->getGenderText()); ?>
 	<br />
 
 	<?php /*

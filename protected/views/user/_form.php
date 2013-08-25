@@ -33,31 +33,43 @@
 	       <?php echo $form->error($model,'password_repeat'); ?>
 	</div>
 
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-<!-- 	<div class="row">
-		<?php echo $form->labelEx($model,'mobile'); ?>
-		<?php echo $form->textField($model,'mobile',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'mobile'); ?>
-	</div>
+	<?PHP $model->type = $type; ?>
+    <?php echo $form->hiddenField($model,'type',array('type'=>"hidden", 'size'=>2,'maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type',$model->getTypeOptions()); ?>
-		<?php echo $form->error($model,'type'); ?>
-	</div> -->
+	<?PHP if($type=='tutor'):?>
 
-<!-- 
-	<div class="row">
-		<?php echo $form->labelEx($model,'gender'); ?>
-		<?php echo $form->dropDownList($model,'gender', $model->getGenderOptions()); ?>
-		<?php echo $form->error($model,'gender'); ?>
-	</div> -->
+
+		<div class="row">
+			<?php echo $form->labelEx($model,'mobile'); ?>
+			<?php echo $form->textField($model,'mobile',array('size'=>60,'maxlength'=>255)); ?>
+			<?php echo $form->error($model,'mobile'); ?>
+		</div>
+
+		<div class="row">
+			<?php echo $form->labelEx($model,'gender'); ?>
+			<?php echo $form->dropDownList($model,'gender', $model->getGenderOptions()); ?>
+			<?php echo $form->error($model,'gender'); ?>
+		</div>
+
+		<div class="row">
+			<?php echo $form->labelEx($model,'photo'); ?>
+			<?php echo $form->textField($model,'photo',array('size'=>60,'maxlength'=>255)); ?>
+			<?php echo $form->error($model,'photo'); ?>
+		</div>
+
+		<div class="row">
+			<?php echo $form->labelEx($model,'introduction'); ?>
+			<?php echo $form->textField($model,'introduction',array('size'=>60,'maxlength'=>255)); ?>
+			<?php echo $form->error($model,'introduction'); ?>
+		</div>	
+
+	<?PHP endif; ?>
 
 
 <!-- 	<div class="row">
@@ -78,17 +90,7 @@
 		<?php echo $form->error($model,'auth_type'); ?>
 	</div> -->
 
-<!-- 	<div class="row">
-		<?php echo $form->labelEx($model,'photo'); ?>
-		<?php echo $form->textField($model,'photo',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'photo'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'introduction'); ?>
-		<?php echo $form->textField($model,'introduction',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'introduction'); ?>
-	</div> -->
 
 <!-- 	<div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>

@@ -73,7 +73,7 @@ class UserController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
+		
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -98,7 +98,7 @@ class UserController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
+		
 		$this->render('createTutor',array(
 			'model'=>$model,
 		));
