@@ -39,12 +39,12 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-	
+
 	<?PHP $model->type = $type; ?>
     <?php echo $form->hiddenField($model,'type',array('type'=>"hidden", 'size'=>2,'maxlength'=>2)); ?>
 
-	<?PHP if($type=='tutor'):?>
 
+	<?PHP if($type=='tutor'):?>
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'mobile'); ?>
@@ -69,7 +69,7 @@
 			<?php echo $form->textField($model,'introduction',array('size'=>60,'maxlength'=>255)); ?>
 			<?php echo $form->error($model,'introduction'); ?>
 		</div>	
-
+		
 	<?PHP endif; ?>
 
 

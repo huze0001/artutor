@@ -6,19 +6,29 @@
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id), array('skill/view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
+
+
+<!-- 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
+	<?php echo CHtml::encode($data->user_id); ?>
+	<br /> -->
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('skill')); ?>:</b>
+	<?php echo CHtml::encode($data->skill); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('category')); ?>:</b>
-	<?php echo CHtml::encode($data->category); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('year_experience')); ?>:</b>
+	<?php echo CHtml::encode($data->year_experience); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode($data->description); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('certificate')); ?>:</b>
+	<?php echo CHtml::encode($data->certificate); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('remark')); ?>:</b>

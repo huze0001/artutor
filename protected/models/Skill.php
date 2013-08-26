@@ -5,17 +5,50 @@
  *
  * The followings are the available columns in table 'art_skill':
  * @property integer $id
- * @property string $name
- * @property string $category
- * @property string $status
+ * @property integer $user_id
+ * @property string $skill
+ * @property integer $year_experience
+ * @property string $description
+ * @property string $certificate
  * @property string $remark
  *
  * The followings are the available model relations:
  * @property ArtRequest[] $artRequests
- * @property ArtUserSkill[] $artUserSkills
+ * @property ArtUser $user
  */
 class Skill extends CActiveRecord
 {
+	const TYPE_INSTRUMENT=0;
+	const TYPE_VOCAL=1;
+	const TYPE_DANCING=2;
+	const TYPE_DESIGN=3;
+
+	 /**
+     * Retrieves a list of issue types
+     * @return array an array of available issue types.
+     */
+	 public function getTypeOptions()
+	 {
+	 	return array(
+	 		self::TYPE_INSTRUMENT=>'Instrument',
+	 		self::TYPE_VOCAL=>'Vocal',
+	 		self::TYPE_DANCING=>'Dancing',
+	 		self::TYPE_DESIGN=>'Design',
+	 		); 
+	 }
+
+	
+
+	/**
+	* @return string the type text display for the current issue
+	*/
+	public function getTypeText()
+	{
+		$typeOptions=$this->typeOptions;
+
+		return isset($typeOptions[$this->skill])? $typeOptions[$this->skill]:"unknown type ({$this->skill})";
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -42,12 +75,13 @@ class Skill extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name','required'),
-			array('name','unique'),
-			array('name, category, status, remark', 'length', 'max'=>255),
+			array('user_id, skill', 'required'),
+			array('user_id, year_experience', 'numerical', 'integerOnly'=>true),
+			array('skill, certificate, remark', 'length', 'max'=>255),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, category, status, remark', 'safe', 'on'=>'search'),
+			array('id, user_id, skill, year_experience, description, certificate, remark', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +94,7 @@ class Skill extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'artRequests' => array(self::HAS_MANY, 'ArtRequest', 'skill_id'),
-			'artUserSkills' => array(self::HAS_MANY, 'ArtUserSkill', 'skill_id'),
+			'user' => array(self::BELONGS_TO, 'ArtUser', 'user_id'),
 		);
 	}
 
@@ -71,9 +105,11 @@ class Skill extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'category' => 'Category',
-			'status' => 'Status',
+			'user_id' => 'User',
+			'skill' => 'Skill',
+			'year_experience' => 'Year Experience',
+			'description' => 'Description',
+			'certificate' => 'Certificate',
 			'remark' => 'Remark',
 		);
 	}
@@ -90,9 +126,11 @@ class Skill extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('category',$this->category,true);
-		$criteria->compare('status',$this->status,true);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('skill',$this->skill,true);
+		$criteria->compare('year_experience',$this->year_experience);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('certificate',$this->certificate,true);
 		$criteria->compare('remark',$this->remark,true);
 
 		return new CActiveDataProvider($this, array(

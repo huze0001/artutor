@@ -28,16 +28,16 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','createTutor'),
+				'actions'=>array('create','createTutor'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update'),
+				'actions'=>array('index','view','update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,8 +51,20 @@ class UserController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$skillDataProvider=new CActiveDataProvider('Skill',
+			array(
+				'criteria'=>array(
+					'condition'=>'user_id=:userid',
+					'params'=>array(':userid'=>$this->loadModel($id)->id),
+					),
+				'pagination'=>array(
+					'pageSize'=>5,
+					), 
+		));
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'skillDataProvider'=>$skillDataProvider,
 		));
 	}
 

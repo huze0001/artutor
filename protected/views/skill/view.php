@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Skills'=>array('index'),
-	$model->name,
+	$model->id,
 );
 
 $this->menu=array(
@@ -21,10 +21,14 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'name',
-		'category',
-		'status',
+		'user_id',
+		array(
+			'name'=>'skill',
+			'value'=>CHtml::encode($model->getTypeText())
+			), 
+		'year_experience',
+		'description',
+		'certificate',
 		'remark',
 	),
 )); ?>
