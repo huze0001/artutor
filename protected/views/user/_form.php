@@ -39,6 +39,7 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
+	
 	<?PHP $model->type = $type; ?>
     <?php echo $form->hiddenField($model,'type',array('type'=>"hidden", 'size'=>2,'maxlength'=>2)); ?>
 
