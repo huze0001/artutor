@@ -93,8 +93,8 @@ class Skill extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'artRequests' => array(self::HAS_MANY, 'ArtRequest', 'skill_id'),
-			'user' => array(self::BELONGS_TO, 'ArtUser', 'user_id'),
+			'requests' => array(self::HAS_MANY, 'Request', 'skill_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 

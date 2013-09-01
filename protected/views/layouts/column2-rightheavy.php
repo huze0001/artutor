@@ -1,11 +1,7 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="row">
-	<div class="col-md-9 last">
-		<div id="content">
-			<?php echo $content; ?>
-		</div><!-- content -->
-	</div>
+
 	<div class="col-md-3">
 		<div id="sidebar">
 		<?php
@@ -19,6 +15,12 @@
 			$this->endWidget();
 		?>
 		</div><!-- sidebar -->
+	</div>
+
+	<div class="col-md-9 last">
+		<div id="content">
+			<?php echo $content; ?>
+		</div><!-- content -->
 	</div>
 </div>
 <?php $this->endContent(); ?>

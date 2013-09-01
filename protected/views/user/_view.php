@@ -33,6 +33,17 @@
 	<?php echo CHtml::encode($data->getGenderText()); ?>
 	<br />
 
+
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('photo')); ?>:</b>
+	<?php echo CHtml::encode($data->photo); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('introduction')); ?>:</b>
+	<?php echo CHtml::encode($data->introduction); ?>
+	<br />
+
+
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('time_create')); ?>:</b>
 	<?php echo CHtml::encode($data->time_create); ?>
@@ -54,13 +65,7 @@
 	<?php echo CHtml::encode($data->auth_type); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('photo')); ?>:</b>
-	<?php echo CHtml::encode($data->photo); ?>
-	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('introduction')); ?>:</b>
-	<?php echo CHtml::encode($data->introduction); ?>
-	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('remark')); ?>:</b>
 	<?php echo CHtml::encode($data->remark); ?>

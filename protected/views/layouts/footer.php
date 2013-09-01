@@ -33,7 +33,7 @@
 	</div>
 	<div class="col-md-2">
 		<h2>About</h2>
-		<?php echo CHtml::link('About ISHU',array('site/page?view=about')); ?><br>
+		<?php echo CHtml::link('About ISHU',array('site/page/view/about')); ?><br>
 		About artutor.sg<br>
 		Partnership<br>
 	</div>

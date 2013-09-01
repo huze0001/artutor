@@ -5,18 +5,16 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+<!-- 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('skill/view', 'id'=>$data->id)); ?>
-	<br />
-
-
+	<br /> -->
 
 <!-- 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_id')); ?>:</b>
 	<?php echo CHtml::encode($data->user_id); ?>
 	<br /> -->
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('skill')); ?>:</b>
-	<?php echo CHtml::encode($data->skill); ?>
+	<?php echo CHtml::link(CHtml::encode($data->getTypeText()),array('skill/view', 'id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('year_experience')); ?>:</b>

@@ -12,18 +12,13 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->label($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'email'); ?>
 		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
@@ -42,44 +37,10 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'time_create'); ?>
-		<?php echo $form->textField($model,'time_create'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'last_login_time'); ?>
-		<?php echo $form->textField($model,'last_login_time'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'rating'); ?>
 		<?php echo $form->textField($model,'rating'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'payment_ref'); ?>
-		<?php echo $form->textField($model,'payment_ref',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'auth_type'); ?>
-		<?php echo $form->textField($model,'auth_type',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'photo'); ?>
-		<?php echo $form->textField($model,'photo',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'introduction'); ?>
-		<?php echo $form->textField($model,'introduction',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'remark'); ?>
-		<?php echo $form->textField($model,'remark',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

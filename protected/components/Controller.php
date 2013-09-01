@@ -20,4 +20,45 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+                'users'=>array('@'),
+                        ),
+			array('allow',  // allow all users to create account
+				'controllers'=>array('user'),
+				'actions'=>array('create','createTutor'),
+				'users'=>array('*'),
+			),
+			array('allow',  // allow registered users to create skill
+				'controllers'=>array('skill'),
+				'actions'=>array('create'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'controllers'=>array('user','skill'),
+				'actions'=>array('delete','update','view'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'index' actions
+				'controllers'=>array('user','skill'),
+				'actions'=>array('admin','index'),
+				'users'=>array('*'),
+			),
+			array('deny',  // deny all users
+				'controllers'=>array('user','skill'),
+				'users'=>array('*'),
+			),
+		);
+	}
+
+
 }

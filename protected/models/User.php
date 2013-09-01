@@ -26,12 +26,28 @@
  * @property ArtRequest[] $artRequests1
  * @property ArtUserSkill[] $artUserSkills
  */
-class User extends CActiveRecord
+class User extends ArtutorActiveRecord
 {
+    // This is for selects only not for CRUD
+    public function defaultScope()
+    {    
+    	// make sure usr can only view his/her own page
+    	// if dun use this you will not be able to log in
+		if(null == Yii::app()->user->id)
+			return array();
+		else 
+	        return array(
+	                // 'condition'=>'(id='.Yii::app()->user->id .' OR '. (Yii::app()->getModule('user')->isAdmin() ? 'TRUE' : 'FALSE') . ')',     
+	                // 'condition'=>'('.$model->id.'='.Yii::app()->user->id. ')',     
+	                'condition'=>'(id='.Yii::app()->user->id.')',    
+                    // 'condition'=>"$t.<column_name> = :<columnName>",
+	        );  
+        // }
+        // else return array();   
+    }
+
 
 	public $password_repeat;
-
-
 
 	 /**
       * apply a hash on the password before we store it in the database
@@ -81,30 +97,6 @@ class User extends CActiveRecord
 
 
 
-	// const TYPE_USER=0;
-	// const TYPE_TUTOR=1;
-
-	//  /**
- //     * Retrieves a list of issue types
- //     * @return array an array of available issue types.
- //     */
-	//  public function getTypeOptions()
-	//  {
-	//  	return array(
-	//  		self::TYPE_USER=>'User',
-	//  		self::TYPE_TUTOR=>'Tutor',
-	//  		); 
-	//  }
-
-	//  /**
- //      * @return string the status text display for the current issue
- //      */
-	//  public function getTypeText()
-	//  {
-	//  	$typeOptions=$this->typeOptions;
-	//  	return isset($typeOptions[$this->gender]) ?
-	//  	$typeOptions[$this->gender] : "unknown status ({$this->type})";
-	//  }
 
 
 
@@ -170,10 +162,10 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'artPayments' => array(self::HAS_MANY, 'ArtPayment', 'tutor_id'),
-			'artRequests' => array(self::HAS_MANY, 'ArtRequest', 'requester_id'),
-			'artRequests1' => array(self::HAS_MANY, 'ArtRequest', 'tutor_id'),
-			'artUserSkills' => array(self::HAS_MANY, 'ArtUserSkill', 'user_id'),
+			'payments' => array(self::HAS_MANY, 'Payment', 'tutor_id'),
+			'requests' => array(self::HAS_MANY, 'Request', 'requester_id'),
+			'requests1' => array(self::HAS_MANY, 'Request', 'tutor_id'),
+			'skills' => array(self::HAS_MANY, 'Skill', 'user_id'),
 		);
 	}
 
