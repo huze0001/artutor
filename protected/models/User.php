@@ -31,9 +31,11 @@ class User extends ArtutorActiveRecord
     // This is for selects only not for CRUD
     public function defaultScope()
     {    
-    	// make sure usr can only view his/her own page
-    	// if dun use this you will not be able to log in
-		if(null == Yii::app()->user->id)
+    	// Dont do the scope check for logging in and for admin pages 
+    	// **ATTENTION: This will need to be changed in the future
+		if(null == Yii::app()->user->id) 
+			return array();
+		else if ('admin' == Yii::app()->controller->getAction()->getId() ||'view' == Yii::app()->controller->getAction()->getId())
 			return array();
 		else 
 	        return array(

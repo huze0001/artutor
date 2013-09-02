@@ -16,20 +16,20 @@
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
-	<div class="row">
+<!-- 	<div class="row">
 		<?php echo $form->label($model,'email'); ?>
 		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
+	</div> -->
 
 	<div class="row">
 		<?php echo $form->label($model,'mobile'); ?>
 		<?php echo $form->textField($model,'mobile',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
-
+<!-- 
 	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
 		<?php echo $form->textField($model,'type',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
+	</div> -->
 
 	<div class="row">
 		<?php echo $form->label($model,'gender'); ?>

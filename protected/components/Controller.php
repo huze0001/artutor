@@ -35,7 +35,12 @@ class Controller extends CController
                         ),
 			array('allow',  // allow all users to create account
 				'controllers'=>array('user'),
-				'actions'=>array('create','createTutor'),
+				'actions'=>array('create','createTutor','admin','view'),
+				'users'=>array('*'),
+			),
+			array('allow',  // allow registered users to create skill
+				'controllers'=>array('skill'),
+				'actions'=>array('view'),
 				'users'=>array('*'),
 			),
 			array('allow',  // allow registered users to create skill
@@ -45,13 +50,13 @@ class Controller extends CController
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'controllers'=>array('user','skill'),
-				'actions'=>array('delete','update','view'),
+				'actions'=>array('delete','update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'index' actions
 				'controllers'=>array('user','skill'),
-				'actions'=>array('admin','index'),
-				'users'=>array('*'),
+				'actions'=>array('index'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'controllers'=>array('user','skill'),

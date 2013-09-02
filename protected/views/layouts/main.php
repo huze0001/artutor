@@ -45,6 +45,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>'Tutor Details', 'url'=>array('/user/admin')),
 				// array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Register As User', 'url'=>array('/user/create'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Register As Tutor', 'url'=>array('/user/createTutor'), 'visible'=>Yii::app()->user->isGuest),

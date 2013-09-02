@@ -18,6 +18,7 @@
  */
 class Skill extends CActiveRecord
 {
+
 	const TYPE_INSTRUMENT=0;
 	const TYPE_VOCAL=1;
 	const TYPE_DANCING=2;

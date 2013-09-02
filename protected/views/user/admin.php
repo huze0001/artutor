@@ -7,10 +7,10 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-);
+// $this->menu=array(
+// 	array('label'=>'List User', 'url'=>array('index')),
+// 	array('label'=>'Create User', 'url'=>array('create')),
+// );
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -40,30 +40,42 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'user-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'email',
-		'password',
-		'name',
-		'mobile',
-		'type',
-		/*
-		'gender',
-		'time_create',
-		'last_login_time',
-		'rating',
-		'payment_ref',
-		'auth_type',
-		'photo',
-		'introduction',
-		'remark',
-		*/
-		array(
-			'class'=>'CButtonColumn',
+
+
+<?php 
+
+// if(Yii::app()->user->isGuest )
+{
+	$this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'user-grid',
+		'dataProvider'=>$model->search(),
+		'filter'=>$model,
+		'columns'=>array(
+			// 'id',
+			// 'email',
+			// 'password',
+			array(
+	        'name'  => 'name',
+	        'value' => 'CHtml::link($data->name, Yii::app()->createUrl("user",array("view"=>$data->id)))',
+	        'type'  => 'raw',
+			    ),
+			'mobile',
+			// 'type',
+			'gender',
+			// 'time_create',
+			// 'last_login_time',
+			'rating',
+			// 'payment_ref',
+			// 'auth_type',
+			// 'photo',
+			// 'introduction',
+			// 'remark',
+			
+			// array(
+			// 	'class'=>'CButtonColumn',
+			// ),
 		),
-	),
-)); ?>
+	)); 
+}
+
+?>
