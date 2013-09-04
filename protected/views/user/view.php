@@ -6,29 +6,40 @@ $this->breadcrumbs=array(
 	'Users'=>array('index'),
 	$model->name,
 );
-?>		
-
-<!-- display tutor request -->
 
 
-
-<?PHP
 // only display the menu if user logged in and is the owner of the page
 if(!Yii::app()->user->isGuest && Yii::app()->user->id== $model->id){
 
-	// Only show request for oneself
-	if($model->requestCount>=1){ 
-		?>
-		<h3>
-			<?php echo $model->requestCount>1 ? $model->requestCount . '
-			requests' : 'One request'; ?>
-		</h3>
-		<?php $this->renderPartial('_requests',array(
-			'requests'=>$model->requests1,
-			)); ?>
-		<?php 
-	}
+	?>
 
+
+
+
+
+
+
+	<?PHP $this->beginWidget('system.web.widgets.CClipWidget', array('id'=>'sidebar')); ?>
+		<!-- Only show request for oneself -->
+		<?PHP
+			if($model->requestCount>=1){ 
+				?>
+				<h3>
+					<?php echo $model->requestCount>1 ? $model->requestCount . '
+					requests' : 'One request'; ?>
+				</h3>
+				<?php $this->renderPartial('_requests',array(
+					'requests'=>$model->requests1,
+					)); ?>
+				<?php 
+			}
+		?>
+	<?PHP $this->endWidget();?>
+
+
+
+
+	<?PHP
 	// Tutor Menu
 	if($model->type =='tutor')
 		$this->menu=array(
@@ -51,14 +62,13 @@ if(!Yii::app()->user->isGuest && Yii::app()->user->id== $model->id){
 
 else if ($model->type=='tutor')
 {
-
 	if(!Yii::app()->user->isGuest)
 	{
 		?>
+
+		<?PHP $this->beginWidget('system.web.widgets.CClipWidget', array('id'=>'sidebar')); ?>
 			<div id="requests">
-
 				<h3>Post a request</h3>
-
 				<?php if(Yii::app()->user->hasFlash('requestSubmitted')): ?>
 				<div class="flash-success">
 					<?php echo Yii::app()->user->getFlash('requestSubmitted'); ?>
@@ -69,8 +79,9 @@ else if ($model->type=='tutor')
 					'request_tutor'=>$model->id,
 					)); ?>
 				<?php endif; ?>
-
 			</div>
+		<?PHP $this->endWidget();?>
+
 		<?PHP
 	}
 	else if(Yii::app()->user->isGuest)

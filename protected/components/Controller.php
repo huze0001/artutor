@@ -58,11 +58,7 @@ class Controller extends CController
 				'actions'=>array('index'),
 				'users'=>array('admin'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'index' actions
-				'controllers'=>array('request'),
-				'actions'=>array('index','create','view','delete','update'),
-				'users'=>array('admin'),
-			),
+
 			array('deny',  // deny all users
 				'controllers'=>array('user','skill'),
 				'users'=>array('*'),

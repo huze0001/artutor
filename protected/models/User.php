@@ -34,19 +34,22 @@ class User extends ArtutorActiveRecord
     {    
     	// Dont do the scope check for logging in and for admin pages 
     	// **ATTENTION: This will need to be changed in the future
-		if(null == Yii::app()->user->id) 
+
+    	// admin page can only show tutor
+    	if ('admin' == Yii::app()->controller->getAction()->getId())
+	        return array(  
+	                'condition'=>'(type="tutor")',    
+	        );  
+
+		if ( null == Yii::app()->user->id) 
 			return array();
-		else if ('admin' == Yii::app()->controller->getAction()->getId() ||'view' == Yii::app()->controller->getAction()->getId())
+		else if ('view' == Yii::app()->controller->getAction()->getId())
 			return array();
 		else 
-	        return array(
-	                // 'condition'=>'(id='.Yii::app()->user->id .' OR '. (Yii::app()->getModule('user')->isAdmin() ? 'TRUE' : 'FALSE') . ')',     
-	                // 'condition'=>'('.$model->id.'='.Yii::app()->user->id. ')',     
+	        return array(  
 	                'condition'=>'(id='.Yii::app()->user->id.')',    
-                    // 'condition'=>"$t.<column_name> = :<columnName>",
 	        );  
-        // }
-        // else return array();   
+
     }
 
 

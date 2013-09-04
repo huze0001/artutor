@@ -8,6 +8,7 @@
 	</div>
 	<div class="col-md-3">
 		<div id="sidebar">
+
 		<?php
 			$this->beginWidget('zii.widgets.CPortlet', array(
 				'title'=>'Operations',
@@ -17,16 +18,19 @@
 				'htmlOptions'=>array('class'=>'operations'),
 			));
 			$this->endWidget();
-
-			// $this->beginWidget('zii.widgets.CPortlet', array(
-			// 	'title'=>'Second Operations',
-			// ));
-			// $this->widget('zii.widgets.CMenu', array(
-			// 	'items'=>$this->menu,
-			// 	'htmlOptions'=>array('class'=>'operations'),
-			// ));
-			// $this->endWidget();
 		?>
+
+
+		<?php
+			$this->beginWidget('zii.widgets.CPortlet', array(
+				'title'=>'Request Tutor',
+			));
+			echo $this->clips['sidebar'];
+			$this->endWidget();
+		?>
+
+
+
 		</div><!-- sidebar -->
 	</div>
 </div>

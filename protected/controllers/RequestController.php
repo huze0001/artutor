@@ -16,7 +16,6 @@ class RequestController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
-			'userContext + create', //check to ensure valid user context
 		);
 	}
 
@@ -29,7 +28,7 @@ class RequestController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -37,7 +36,7 @@ class RequestController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('index', 'admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
