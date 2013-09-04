@@ -19,10 +19,10 @@
 class Skill extends CActiveRecord
 {
 
-	const TYPE_INSTRUMENT=0;
-	const TYPE_VOCAL=1;
-	const TYPE_DANCING=2;
-	const TYPE_DESIGN=3;
+	const TYPE_INSTRUMENT= "Instrument";
+	const TYPE_VOCAL= "Vocal";
+	const TYPE_DANCING= "Dancing";
+	const TYPE_DESIGN= "Design";
 
 	 /**
      * Retrieves a list of issue types
@@ -38,17 +38,15 @@ class Skill extends CActiveRecord
 	 		); 
 	 }
 
-	
+	// /**
+	// * @return string the type text display for the current issue
+	// */
+	// public function getTypeText()
+	// {
+	// 	$typeOptions=$this->typeOptions;
 
-	/**
-	* @return string the type text display for the current issue
-	*/
-	public function getTypeText()
-	{
-		$typeOptions=$this->typeOptions;
-
-		return isset($typeOptions[$this->skill])? $typeOptions[$this->skill]:"unknown type ({$this->skill})";
-	}
+	// 	return isset($typeOptions[$this->skill])? $typeOptions[$this->skill]:"unknown type ({$this->skill})";
+	// }
 
 	/**
 	 * Returns the static model of the specified AR class.

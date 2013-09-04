@@ -6,9 +6,28 @@ $this->breadcrumbs=array(
 	'Users'=>array('index'),
 	$model->name,
 );
+?>		
 
+<!-- display tutor request -->
+
+
+
+<?PHP
 // only display the menu if user logged in and is the owner of the page
 if(!Yii::app()->user->isGuest && Yii::app()->user->id== $model->id){
+
+	// Only show request for oneself
+	if($model->requestCount>=1){ 
+		?>
+		<h3>
+			<?php echo $model->requestCount>1 ? $model->requestCount . '
+			requests' : 'One request'; ?>
+		</h3>
+		<?php $this->renderPartial('_requests',array(
+			'requests'=>$model->requests1,
+			)); ?>
+		<?php 
+	}
 
 	// Tutor Menu
 	if($model->type =='tutor')
@@ -30,9 +49,39 @@ if(!Yii::app()->user->isGuest && Yii::app()->user->id== $model->id){
 		);
 }
 
+else if ($model->type=='tutor')
+{
+
+	if(!Yii::app()->user->isGuest)
+	{
+		?>
+			<div id="requests">
+
+				<h3>Post a request</h3>
+
+				<?php if(Yii::app()->user->hasFlash('requestSubmitted')): ?>
+				<div class="flash-success">
+					<?php echo Yii::app()->user->getFlash('requestSubmitted'); ?>
+				</div>
+				<?php else: ?>
+				<?php $this->renderPartial('/request/_form',array(
+					'model'=>$request,
+					'request_tutor'=>$model->id,
+					)); ?>
+				<?php endif; ?>
+
+			</div>
+		<?PHP
+	}
+	else if(Yii::app()->user->isGuest)
+	{		
+		$this->menu=array(
+			array('label'=>'Please login to request', 'url'=>array('site/login'),
+				));
+	}
+}
+
 ?>
-
-
 
 
 <h1>Your Profile</h1>

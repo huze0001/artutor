@@ -27,10 +27,7 @@ if(!Yii::app()->user->isGuest && Yii::app()->user->id== $model->user_id){
 	'data'=>$model,
 	'attributes'=>array(
 		// 'user_id',
-		array(
-			'name'=>'skill',
-			'value'=>CHtml::encode($model->getTypeText())
-			), 
+		'skill',
 		'year_experience',
 		'description',
 		'certificate',

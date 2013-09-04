@@ -1,10 +1,7 @@
 <?php
 
-class UserController extends Controller
+class RequestController extends Controller
 {
-    
-
-
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -19,25 +16,34 @@ class UserController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+			'userContext + create', //check to ensure valid user context
 		);
 	}
 
 	/**
-     * Creates a new comment on an issue
-     */
-	protected function createRequest($user)
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
 	{
-		$request=new Request;
-		if(isset($_POST['Request']))
-		{
-			$request->attributes=$_POST['Request'];
-			if($user->addRequest($request))
-			{
-				Yii::app()->user->setFlash('requestSubmitted',"Your Request has been sent." );
-				$this->refresh();
-			}
-		}
-		return $request;
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
 	}
 
 	/**
@@ -46,31 +52,10 @@ class UserController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$skillDataProvider=new CActiveDataProvider('Skill',
-			array(
-				'criteria'=>array(
-					'condition'=>'user_id=:userid',
-					'params'=>array(':userid'=>$this->loadModel($id)->id),
-					),
-				'pagination'=>array(
-					'pageSize'=>5,
-					), 
-		));
-
-		$user=$this->loadModel($id);
-		$request = $this->createRequest($user);
-
 		$this->render('view',array(
-			'model'=>$user,
-			'skillDataProvider'=>$skillDataProvider,
-			'request' => $request,
+			'model'=>$this->loadModel($id),
 		));
 	}
-
-
-
-
-
 
 	/**
 	 * Creates a new model.
@@ -78,44 +63,19 @@ class UserController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new User;
+		$model=new Request;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
+		if(isset($_POST['Request']))
 		{
-			$model->attributes=$_POST['User'];
+			$model->attributes=$_POST['Request'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-		
+
 		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
-
-
-
-	/**
-	 * Creates a new model-tutor.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreateTutor()
-	{
-		$model=new User;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['User']))
-		{
-			$model->attributes=$_POST['User'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-		
-		$this->render('createTutor',array(
 			'model'=>$model,
 		));
 	}
@@ -132,9 +92,9 @@ class UserController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
+		if(isset($_POST['Request']))
 		{
-			$model->attributes=$_POST['User'];
+			$model->attributes=$_POST['Request'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -163,7 +123,7 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('User');
+		$dataProvider=new CActiveDataProvider('Request');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -174,10 +134,10 @@ class UserController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new User('search');
+		$model=new Request('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
+		if(isset($_GET['Request']))
+			$model->attributes=$_GET['Request'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -191,7 +151,7 @@ class UserController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->findByPk($id);
+		$model=Request::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -203,7 +163,7 @@ class UserController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='request-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -14,7 +14,7 @@
 	<br /> -->
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('skill')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->getTypeText()),array('skill/view', 'id'=>$data->id)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->skill),array('skill/view', 'id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('year_experience')); ?>:</b>

@@ -11,7 +11,7 @@ class m130811_111943_create_request_table extends CDbMigration
             'skill_id'=>'int NOT NULL',
             'hour_per_week'=>'int NULL DEFAULT NULL',
             'hourly_rate'=>'int NULL DEFAULT NULL',
-            'time_request'=>'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'time_request'=>'timestamp NULL DEFAULT CURRENT_TIMESTAMP',
             'time_confirm'=>'timestamp NULL DEFAULT NULL',
             'time_cancel'=>'timestamp NULL DEFAULT NULL',
             'time_reject'=>'timestamp NULL DEFAULT NULL',

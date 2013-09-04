@@ -28,6 +28,7 @@
  */
 class User extends ArtutorActiveRecord
 {
+
     // This is for selects only not for CRUD
     public function defaultScope()
     {    
@@ -48,6 +49,24 @@ class User extends ArtutorActiveRecord
         // else return array();   
     }
 
+
+	 /**
+	    * @return array of valid users for this project, indexed by user IDs
+	    */
+	 public function getSkillOptions()
+	 { 
+	 	$usersArray = CHtml::listData($this->skills, 'id', 'skill');
+	 	return $usersArray;
+	 }
+
+	/**
+     * Adds a request to this user
+     */
+	public function addRequest($request)
+	{
+	     $request->tutor_id=$this->id;
+	     return $request->save();
+	}
 
 	public $password_repeat;
 
@@ -167,6 +186,7 @@ class User extends ArtutorActiveRecord
 			'payments' => array(self::HAS_MANY, 'Payment', 'tutor_id'),
 			'requests' => array(self::HAS_MANY, 'Request', 'requester_id'),
 			'requests1' => array(self::HAS_MANY, 'Request', 'tutor_id'),
+			'requestCount' => array(self::STAT, 'Request', 'tutor_id'),
 			'skills' => array(self::HAS_MANY, 'Skill', 'user_id'),
 		);
 	}
