@@ -37,11 +37,9 @@
 
 
 
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'skill_id'); ?>
-		<!-- <?php echo $form->textField($model,'skill_id'); ?> -->
-		<?php echo $form->dropDownList($model,'skill_id', $model->tutor->getSkillOptions()); ?>
+<?php echo  $model->tutor; ?>
 		<?php echo $form->error($model,'skill_id'); ?>
 	</div>
 

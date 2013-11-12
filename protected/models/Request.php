@@ -26,6 +26,37 @@
  */
 class Request extends CActiveRecord
 {
+
+	const STATUS_REJECT= "Reject";
+	const STATUS_AGREE= "Agree";
+
+	 /**
+     * Retrieves a list of issue types
+     * @return array an array of available issue types.
+     */
+	 public function getStatusOptions()
+	 {
+	 	return array(
+	 		self::STATUS_REJECT=>'Reject',
+	 		self::STATUS_AGREE=>'Agree',
+	 		); 
+	 }
+
+
+	// This is for selects only not for CRUD
+    public function defaultScope()
+    {    
+    	// Dont do the scope check for logging in and for admin pages 
+    	// **ATTENTION: This will need to be changed in the future
+
+    	// admin page can only show tutor
+    	if ('index' == Yii::app()->controller->getAction()->getId())
+	        return array(  
+	                'condition'=>'(tutor_id='.Yii::app()->user->id.')',   
+	        );  
+
+
+    }
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.

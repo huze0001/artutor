@@ -19,6 +19,7 @@
 	<?PHP $model->user_id = Yii::app()->user->id;?>
     <?php echo $form->hiddenField($model,'user_id',array('type'=>"hidden", 'size'=>2,'maxlength'=>2)); ?>
 
+
 <!-- 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>

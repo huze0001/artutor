@@ -11,45 +11,21 @@ $this->breadcrumbs=array(
 // only display the menu if user logged in and is the owner of the page
 if(!Yii::app()->user->isGuest && Yii::app()->user->id== $model->id){
 
-	?>
-
-
-
-
-
-
-
-	<?PHP $this->beginWidget('system.web.widgets.CClipWidget', array('id'=>'sidebar')); ?>
-		<!-- Only show request for oneself -->
-		<?PHP
-			if($model->requestCount>=1){ 
-				?>
-				<h3>
-					<?php echo $model->requestCount>1 ? $model->requestCount . '
-					requests' : 'One request'; ?>
-				</h3>
-				<?php $this->renderPartial('_requests',array(
-					'requests'=>$model->requests1,
-					)); ?>
-				<?php 
-			}
-		?>
-	<?PHP $this->endWidget();?>
-
-
-
-
-	<?PHP
 	// Tutor Menu
-	if($model->type =='tutor')
+	if($model->type =='tutor'){
+
 		$this->menu=array(
 			// array('label'=>'List User', 'url'=>array('index')),
 			// array('label'=>'Create User', 'url'=>array('create')),
+			array('label'=>'My Profile', 'url'=>array('/user','view'=>Yii::app()->user->id)),
 			array('label'=>'Update Profile', 'url'=>array('update', 'id'=>$model->id)),
-			array('label'=>'Add Skill', 'url'=>array('skill/create')), 
+			array('label'=>'Skill Management', 'url'=>array('skill/create')), 
 			// array('label'=>'Delete User', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-			// array('label'=>'Manage User', 'url'=>array('admin')),
+			array('label'=>'Manage My Request', 'url'=>array('request/index')),
 		);
+
+	}
+
 	else if ($model->type=='user')
 		$this->menu=array(
 			// array('label'=>'List User', 'url'=>array('index')),

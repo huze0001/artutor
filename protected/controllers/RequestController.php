@@ -32,11 +32,11 @@ class RequestController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','index'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index', 'admin','delete'),
+				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -51,9 +51,25 @@ class RequestController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model=$this->loadModel($id);
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
+
+
+		if(isset($_POST['Request']))
+		{
+			// $model->attributes=$_POST['Request'];
+			// if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
+		}
+
+
+				// $sql = "UPDATE art_request SET status= '22' WHERE id='12'";
+				// $command = Yii::app()->db->createCommand($sql);
+				// $command->execute();
+
 	}
 
 	/**

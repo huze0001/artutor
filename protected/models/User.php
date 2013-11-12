@@ -41,7 +41,8 @@ class User extends ArtutorActiveRecord
 	                'condition'=>'(type="tutor")',    
 	        );  
 
-		if ( null == Yii::app()->user->id) 
+
+		if (null == Yii::app()->user->id) 
 			return array();
 		else if ('view' == Yii::app()->controller->getAction()->getId())
 			return array();

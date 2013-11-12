@@ -13,8 +13,10 @@ if($model->type =='tutor')
 	$this->menu=array(
 		// array('label'=>'List User', 'url'=>array('index')),
 		// array('label'=>'Create User', 'url'=>array('create')),
+		array('label'=>'My Profile', 'url'=>array('/user','view'=>Yii::app()->user->id)),
 		array('label'=>'Update Profile', 'url'=>array('update', 'id'=>$model->id)),
 		array('label'=>'Add Skill', 'url'=>array('skill/create')), 
+		array('label'=>'Manage My Request', 'url'=>array('request/index')),
 		// array('label'=>'Delete User', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 		// array('label'=>'Manage User', 'url'=>array('admin')),
 	);
