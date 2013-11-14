@@ -37,7 +37,10 @@ class Skill extends CActiveRecord
 	 		self::TYPE_VOCAL=>'Vocal',
 	 		self::TYPE_DANCING=>'Dancing',
 	 		self::TYPE_DESIGN=>'Design',
-	 		); 
+
+
+	 		);
+
 	 }
 
 	// /**
